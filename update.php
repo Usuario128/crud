@@ -14,18 +14,25 @@ function input($data)
 // Check if form is submitted for user update, then redirect to homepage after update
 if(isset($_POST['update']))
 {	
-	$id = $_POST['id'];
-	$name = input($_POST["name"]);
-	$username = input($_POST["username"]);
-	$email = input($_POST["email"]);
-	$phone = input($_POST["phone"]);
-	$jobs = input($_POST["jobs"]);
+	if($_POST['accion']==1){
+		$id = $_POST['id'];
+		$name = input($_POST["name"]);
+		$username = input($_POST["username"]);
+		$email = input($_POST["email"]);
+		$phone = input($_POST["phone"]);
+		$jobs = input($_POST["jobs"]);
+		$result = mysqli_query($conn, "UPDATE users SET name='$name',username='$username',email='$email',phone='$phone',jobs='$jobs' WHERE id=$id");
+	}
+	if($_POST['accion']==2){
+		$id = $_POST['id'];
+		$game = input($_POST["game"]);
+		$launch = input($_POST["launch"]);
+		$type = input($_POST["type"]);
 		
-	// update user data
-	$result = mysqli_query($conn, "UPDATE users SET name='$name',username='$username',email='$email',phone='$phone',jobs='$jobs' WHERE id=$id");
-	
-	// Redirect to homepage to display updated user in list
+		$result = mysqli_query($conn, "UPDATE videogames SET game='$game',launch='$launch',type='$type' WHERE id=$id");
+	}
 	header("Location: index.php");
+
 }
 ?>
 <?php
