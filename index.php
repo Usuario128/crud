@@ -55,6 +55,8 @@
         }
     }
     ?>
+    <div id="modalContainer"></div>
+
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -66,39 +68,56 @@
                                 <h3 class="panel-title">User Database</h3>
                             </div>
                             <div class="col col-xs-6 text-right">
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Create</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#exampleModal" data-whatever="@fat">Create</button>
 
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title text-left d-inline" id="exampleModalLabel">Create New User
-                                                <button type="button" class="close d-inline" data-dismiss="modal">&times;</button></h5>
+                                                <h5 class="modal-title text-left d-inline" id="exampleModalLabel">Create
+                                                    New User
+                                                    <button type="button" class="close d-inline"
+                                                        data-dismiss="modal">&times;</button>
+                                                </h5>
                                             </div>
                                             <div class="modal-body text-left">
-                                                <form form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" name="form1">
+                                                <form form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"
+                                                    name="form1">
+                                                    <input type="hidden" name="accion" value="1">
                                                     <div class="form-group mb-2">
                                                         <label for="recipient-name" class="col-form-label">Name:</label>
-                                                        <input type="text" class="form-control" id="user-name" name="name" required>
+                                                        <input type="text" class="form-control" id="user-name"
+                                                            name="name" required>
                                                     </div>
                                                     <div class="form-group mb-2">
-                                                        <label for="recipient-name" class="col-form-label">Username:</label>
-                                                        <input type="text" class="form-control" id="user-name" name="username" required>
+                                                        <label for="recipient-name"
+                                                            class="col-form-label">Username:</label>
+                                                        <input type="text" class="form-control" id="user-name"
+                                                            name="username" required>
                                                     </div>
                                                     <div class="form-group mb-2">
-                                                        <label for="recipient-name" class="col-form-label">Email:</label>
-                                                        <input type="text" class="form-control" id="user-email" name="email" required>
+                                                        <label for="recipient-name"
+                                                            class="col-form-label">Email:</label>
+                                                        <input type="text" class="form-control" id="user-email"
+                                                            name="email" required>
                                                     </div>
                                                     <div class="form-group mb-2">
-                                                        <label for="recipient-name" class="col-form-label">Number Phone:</label>
-                                                        <input type="text" class="form-control" id="user-phone" name="phone" required>
+                                                        <label for="recipient-name" class="col-form-label">Number
+                                                            Phone:</label>
+                                                        <input type="text" class="form-control" id="user-phone"
+                                                            name="phone" required>
                                                     </div>
                                                     <div class="form-group mb-2">
                                                         <label for="recipient-name" class="col-form-label">Jobs:</label>
-                                                        <input type="text" class="form-control" id="user-jobs" name="jobs" required>
+                                                        <input type="text" class="form-control" id="user-jobs"
+                                                            name="jobs" required>
                                                     </div>
-                                                    <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Close</button>
-                                                    <button type="submit" name="submit" class="btn btn-success">Submit</button>
+                                                    <button type="button" class="btn btn-secondary text-right"
+                                                        data-dismiss="modal">Close</button>
+                                                    <button type="submit" name="submit"
+                                                        class="btn btn-success">Submit</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -108,7 +127,7 @@
                         </div>
                     </div>
 
-                    
+
                     <div class="panel-body">
                         <table class="table table-bordered table-hover table-dark">
                             <thead>
@@ -137,8 +156,9 @@
                                     echo "<td>" . $user_data['email'] . "</td>";
                                     echo "<td>" . $user_data['phone'] . "</td>";
                                     echo "<td>" . $user_data['jobs'] . "</td>";
-                                    echo "<td><button type='button' class='btn btn-success' data-toggle='modal' data-target='#updateModal' data-whatever='@fat'>Update</button>
-                                    <a href='delete.php?id=$user_data[id]'><button type='button' class='btn btn-danger'>Delete</button></a></td></tr>"; 
+                                    echo "<td><button type='button' class='btn btn-success' data-toggle='modal' data-target='#updateModal' onclick='actualizar_user(" . $user_data['id'] . ")'>Update</button>
+                                    <a href='delete.php?id=" . $user_data['id'] . "&accion=1'><button type='button' class='btn btn-danger'>Delete</button></a></td></tr>";
+
                                 }
                                 ?>
                                 </tr>
@@ -169,10 +189,133 @@
         </div>
     </div>
 
+
+
+
+    <!-- VIDEOGAMES -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h3 class="margin">2 CRUD Database</h3>
+                <div class="panel panel-default panel-table">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col col-xs-6">
+                                <h3 class="panel-title">Videogames Database</h3>
+                            </div>
+                            <!-- Crear animale -->
+                            <div class="col col-xs-6 text-right">
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#modal_animal_create" data-whatever="@fat">Create</button>
+                                <div class="modal fade" id="modal_animal_create" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-left d-inline" id="exampleModalLabel">Create New Animal
+                                                    <button type="button" class="close d-inline"
+                                                        data-dismiss="modal">&times;</button>
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body text-left">
+                                                <form form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"
+                                                    name="form1">
+                                                    <input type="hidden" name="accion" value="2">
+                                                    <div class="form-group mb-2">
+                                                        <label for="recipient-name" class="col-form-label">Game:</label>
+                                                        <input type="text" class="form-control" id="game"
+                                                            name="game" required>
+                                                    </div>
+                                                    <div class="form-group mb-2">
+                                                        <label for="recipient-name"
+                                                            class="col-form-label">Launch :</label>
+                                                        <input type="text" class="form-control" id="launch"
+                                                            name="launch" required>
+                                                    </div>
+                                                    <div class="form-group mb-2">
+                                                        <label for="recipient-name"
+                                                            class="col-form-label">Type:</label>
+                                                        <input type="text" class="form-control" id="type"
+                                                            name="type" required>
+                                                    </div>
+                                                    
+                                                    <button type="button" class="btn btn-secondary text-right"
+                                                        data-dismiss="modal">Close</button>
+                                                    <button type="submit" name="submit"
+                                                        class="btn btn-success">Submit</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="panel-body">
+                        <table class="table table-bordered table-hover table-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Game</th>
+                                    <th scope="col">Launch</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                include_once("config.php");
+
+                                $result = mysqli_query($conn, "SELECT * FROM videogames ORDER BY id DESC");
+                                ?>
+                                <?php
+                                while ($animal_data = mysqli_fetch_array($result)) {
+                                    echo "<tr>";
+                                    echo "<td>" . $animal_data['id'] . "</td>";
+                                    echo "<td>" . $animal_data['game'] . "</td>";
+                                    echo "<td>" . $animal_data['launch'] . "</td>";
+                                    echo "<td>" . $animal_data['type'] . "</td>";
+                                    echo "<td><button type='button' class='btn btn-success' data-toggle='modal' data-target='#updateModal' onclick='actualizar_animal(" . $animal_data['id'] . ")'>Update</button>
+                                    <a href='delete.php?id=" . $animal_data['id'] . "&accion=2'><button type='button' class='btn btn-danger'>Delete</button></a></td></tr>";
+
+                                }
+                                ?>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col col-xs-4">Page 1 of 5
+                            </div>
+                            <div class="col col-xs-8">
+                                <ul class="pagination hidden-xs pull-right">
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                </ul>
+                                <ul class="pagination visible-xs pull-right">
+                                    <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    
 </body>
 
-</html>
+</html>      
