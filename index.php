@@ -16,7 +16,7 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body id="html">
     <?php
     //Include file koneksi, untuk koneksikan ke database
     include "config.php";
@@ -32,27 +32,41 @@
     //Create User
     //Cek apakah ada kiriman form dari method post
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+        if($_POST["accion"]==1){
+            $name = input($_POST["name"]);
+            $username = input($_POST["username"]);
+            $email = input($_POST["email"]);
+            $phone = input($_POST["phone"]);
+            $jobs = input($_POST["jobs"]);
     
-        $name = input($_POST["name"]);
-        $username = input($_POST["username"]);
-        $email = input($_POST["email"]);
-        $phone = input($_POST["phone"]);
-        $jobs = input($_POST["jobs"]);
-
-        //Query input menginput data kedalam tabel anggota
-        $create = "insert into users (name,username,email,phone,jobs) values
-		('$name','$username','$email','$phone','$jobs')";
-
-        //Mengeksekusi/menjalankan query diatas
-        $result = mysqli_query($conn, $create);
-
-        //Kondisi apakah berhasil atau tidak dalam mengeksekusi query diatas
-        if ($result) {
-            echo "<div class='alert alert-success'> Data Berhasil disimpan.</div>";
-        } else {
-            echo "<div class='alert alert-danger'> Data Gagal disimpan.</div>";
+            //Query input menginput data kedalam tabel anggota
+            $create = "insert into users (name,username,email,phone,jobs) values
+            ('$name','$username','$email','$phone','$jobs')";
+    
+            //Mengeksekusi/menjalankan query diatas
+            $result = mysqli_query($conn, $create);
+    
+            //Kondisi apakah berhasil atau tidak dalam mengeksekusi query diatas
+            if ($result) {
+                echo "<div class='alert alert-success'> Data Berhasil disimpan.</div>";
+            } else {
+                echo "<div class='alert alert-danger'> Data Gagal disimpan.</div>";
+            }
         }
+        if($_POST["accion"]==2){
+            $game = input($_POST["game"]);
+            $launch = input($_POST["launch"]);
+            $type = input($_POST["type"]);
+            $create = "insert into videogames (game,launch,type) values
+            ('$game','$launch','$type')";
+            $result = mysqli_query($conn, $create);
+            if ($result) {
+                echo "<div class='alert alert-success'> Successfully Created.</div>";
+            } else {
+                echo "<div class='alert alert-danger'>Failure to create</div>";
+            }
+        }
+        
     }
     ?>
     <div id="modalContainer"></div>
@@ -203,16 +217,16 @@
                             <div class="col col-xs-6">
                                 <h3 class="panel-title">Videogames Database</h3>
                             </div>
-                            <!-- Crear animale -->
+                            <!-- Crear videogames -->
                             <div class="col col-xs-6 text-right">
                                 <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#modal_animal_create" data-whatever="@fat">Create</button>
-                                <div class="modal fade" id="modal_animal_create" tabindex="-1" role="dialog"
+                                    data-target="#modal_game_create" data-whatever="@fat">Create</button>
+                                <div class="modal fade" id="modal_game_create" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title text-left d-inline" id="exampleModalLabel">Create New Animal
+                                                <h5 class="modal-title text-left d-inline" id="exampleModalLabel">Create New Videogame
                                                     <button type="button" class="close d-inline"
                                                         data-dismiss="modal">&times;</button>
                                                 </h5>
@@ -271,14 +285,14 @@
                                 $result = mysqli_query($conn, "SELECT * FROM videogames ORDER BY id DESC");
                                 ?>
                                 <?php
-                                while ($animal_data = mysqli_fetch_array($result)) {
+                                while ($game_data = mysqli_fetch_array($result)) {
                                     echo "<tr>";
-                                    echo "<td>" . $animal_data['id'] . "</td>";
-                                    echo "<td>" . $animal_data['game'] . "</td>";
-                                    echo "<td>" . $animal_data['launch'] . "</td>";
-                                    echo "<td>" . $animal_data['type'] . "</td>";
-                                    echo "<td><button type='button' class='btn btn-success' data-toggle='modal' data-target='#updateModal' onclick='actualizar_animal(" . $animal_data['id'] . ")'>Update</button>
-                                    <a href='delete.php?id=" . $animal_data['id'] . "&accion=2'><button type='button' class='btn btn-danger'>Delete</button></a></td></tr>";
+                                    echo "<td>" . $game_data['id'] . "</td>";
+                                    echo "<td>" . $game_data['game'] . "</td>";
+                                    echo "<td>" . $game_data['launch'] . "</td>";
+                                    echo "<td>" . $game_data['type'] . "</td>";
+                                    echo "<td><button type='button' class='btn btn-success' data-toggle='modal' data-target='#updateModal' onclick='actualizar_game(" . $game_data['id'] . ")'>Update</button>
+                                    <a href='delete.php?id=" . $game_data['id'] . "&accion=2'><button type='button' class='btn btn-danger'>Delete</button></a></td></tr>";
 
                                 }
                                 ?>
