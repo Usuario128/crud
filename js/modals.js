@@ -43,3 +43,40 @@ function actualizar_user(id) {
     const modal = document.getElementById("modalContainer");
     modal.innerHTML=html2;
 }
+function actualizar_game(id) {
+    const html2 = `
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-left" id="updateModalLabel">Update Game
+                <button type="button" class="close d-inline" data-dismiss="modal">&times;</button></h5>
+            </div>
+            <div class="modal-body text-left">
+                <form form action="update.php" method="post" name="update_user">
+                    <input type="hidden" name="accion" value="2">
+
+                    <div class="form-group mb-2">
+          <              <label for="game" class="col-form-label">Game:</label>
+                        <input type="text" class="form-control" id="game" name="game" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="launch" class="col-form-label">Launch:</label>
+                        <input type="text" class="form-control" id="launch" name="launch" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="type" class="col-form-label">Type:</label>
+                        <input type="text" class="form-control" id="type" name="type" required>
+                    </div>
+                    <input type="hidden" name="id" value="${id}"/>
+                    <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Close</button>
+                    <button type="submit" name="update" value="Update" class="btn btn-success">Submit</button>
+                /form>
+            </div>
+        </div>
+    </div>
+</div>
+    `
+    const modal = document.getElementById("modalContainer");
+    modal.innerHTML=html2;
+}
