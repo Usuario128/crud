@@ -33,7 +33,7 @@
     //Cek apakah ada kiriman form dari method post
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        $id = $_GET['id'];
+    
         $name = input($_POST["name"]);
         $username = input($_POST["username"]);
         $email = input($_POST["email"]);
@@ -108,43 +108,7 @@
                         </div>
                     </div>
 
-                    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title text-left" id="updateModalLabel">Update User
-                                    <button type="button" class="close d-inline" data-dismiss="modal">&times;</button></h5>
-                                </div>
-                                <div class="modal-body text-left">
-                                    <form form action="update.php" method="post" name="update_user">
-                                        <div class="form-group mb-2">
-                                            <label for="user-name" class="col-form-label">Name:</label>
-                                            <input type="text" class="form-control" id="user-name" name="name" required>
-                                        </div>
-                                        <div class="form-group mb-2">
-                                            <label for="user-username" class="col-form-label">Username:</label>
-                                            <input type="text" class="form-control" id="user-username" name="username" required>
-                                        </div>
-                                        <div class="form-group mb-2">
-                                            <label for="user-emai" class="col-form-label">Email:</label>
-                                            <input type="text" class="form-control" id="user-email" name="email" required>
-                                        </div>
-                                        <div class="form-group mb-2">
-                                            <label for="user-phone" class="col-form-label">Number Phone:</label>
-                                            <input type="text" class="form-control" id="user-phone" name="phone" required>
-                                        </div>
-                                        <div class="form-group mb-2">
-                                            <label for="user-jobs" class="col-form-label">Jobs:</label>
-                                            <input type="text" class="form-control" id="user-jobs" name="jobs" required>
-                                        </div>
-                                        <input type="hidden" name="id" value="<?php echo $user_data['id']; ?>" />
-                                        <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Close</button>
-                                        <button type="submit" name="update" value="Update" class="btn btn-success">Submit</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="panel-body">
                         <table class="table table-bordered table-hover table-dark">
                             <thead>
